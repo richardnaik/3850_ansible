@@ -1,0 +1,1 @@
+Configures student VMs Mizzou's INFOTC 3850 class. This is for educational purposes only and is provided as-is with no support of any kind.
