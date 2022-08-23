@@ -1,6 +1,11 @@
 - become: yes
   hosts: all
   name: vm_config
+
+  # install prometheus node exporter
+  roles:
+  - cloudalchemy.node_exporter
+
   tasks:
     - name: Add the student user
       user:
@@ -12,21 +17,3 @@
         state: present
         key: "{{ lookup('file', 'keys/' + ansible_hostname + '.pub') }}"
       
-    # - name: Install apache2
-    #   apt:
-    #     name: apache2
-    #     update_cache: yes
-    #     state: latest
-      
-    # - name: Enable mod_rewrite
-    #   apache2_module:
-    #     name: rewrite 
-    #     state: present
-    #   notify:
-    #     - Restart apache2
-
-  # handlers:
-  #   - name: restart sshd
-  #     service:
-  #       name: sshd
-  #       state: restarted

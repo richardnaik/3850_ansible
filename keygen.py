@@ -1,3 +1,5 @@
+# generate key pairs for each student
+
 from Crypto.PublicKey import RSA
 
 pawprints = open('pawprints','r')
