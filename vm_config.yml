@@ -16,4 +16,19 @@
         user: "{{ ansible_hostname }}"
         state: present
         key: "{{ lookup('file', 'keys/' + ansible_hostname + '.pub') }}"
+    
+    - name: install acl package
+      package:
+        name: acl
+        state: present
+
+    - name: Add user bob
+      ansible.builtin.user:
+        name: bob
+        shell: /bin/bash
+
+    - name: Add user linda
+      ansible.builtin.user:
+        name: linda
+        shell: /bin/bash
       
