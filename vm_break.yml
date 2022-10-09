@@ -1,0 +1,28 @@
+- become: yes
+  hosts: all
+  name: vm_break
+
+  tasks:
+    - name: Change permissions on the index file
+      file:
+        name: "/var/www/html/index.nginx-debian.html"
+        owner: www-data
+        mode: 640
+        state: file
+
+    - name: Change nginx user to linda
+      ansible.builtin.lineinfile:
+        path: /etc/nginx/nginx.conf
+        regexp: '^user'
+        line: user linda;
+
+    - name: Change the listening port to 731
+      ansible.builtin.lineinfile:
+        path: /etc/nginx/sites-available/default
+        regexp: 'listen 80 default_server;'
+        line: listen 731 default_server;
+      
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
